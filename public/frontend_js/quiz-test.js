@@ -62,7 +62,7 @@ let mainConfigurations;
 let profile_characteristics = {};
 let nextQuestionTimeoutCounter = 3000;
 let selectionQuestionTimeoutCounter = 6000;
-let closeResponseTimeoutCounter = 2000;
+let closeResponseTimeoutCounter = 5000;
 let timeout;
 
 const mainImage = $(".main-image-container img");
@@ -1319,10 +1319,18 @@ async function askQuestion(totalQuizQuestions, counter, fromBack) {
     currentActiveAnswerType = "typeSelection";
 
     ques.answers.forEach((val, index) => {
+      console.log({ index, length: ques.answers.length });
       if (val.answer) {
         $("#typeSelection .answerInner").append(`
           <div class="selectionOptions">
-            <button data-val="${val.answer}" data-id="${val.id}" class="selectionBtns selectionBtn" >${val.answer}</button>
+            <button onClick='checkAllergie(event, this)' data-val="${val.answer}" data-id="${val.id}" class="selectionBtns selectionBtn" >${val.answer}</button>
+          </div>
+        `);
+      }
+      if (index + 1 == ques.answers.length) {
+        $("#typeSelection .answerInner").append(`
+          <div class="selectionOptions">
+            <button onClick='handleNoneOfTheAbove()' data-val="${"None of the above"}" data-id="${"None of the above"}" class="selectionBtns selectionBtn" >${"None of the above"}</button>
           </div>
         `);
       }
@@ -1991,10 +1999,12 @@ async function addToCart() {
 }
 
 function handleNoneOfTheAbove() {
+  console.log("handleNoneOfTheAbove");
   isSkipStoreAnswer = true;
   nextQuestion();
 }
 
+function checkAllergie(e) {}
 function handleImageMissing(self) {
   $(self).addClass("image-missing");
 }
