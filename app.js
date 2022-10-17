@@ -71,10 +71,8 @@ app.set("view engine", "eta");
 app.set("views", path.join(__dirname, "/views"));
 app.use(cookieParser());
 app.use(helmet());
-
 app.use(PowerByService);
 app.use(express.static(path.join(__dirname, "/public")));
-
 app.get("/version", (req, res) => res.status(200).json({ version: process.env.VERSION }));
 app.get("/", (req, res, next) => {
   return res.send("<h1 style='text-align:left;'>Live!</h1>");

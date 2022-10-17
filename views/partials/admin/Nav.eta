@@ -17,6 +17,8 @@
     <li><a href="/admin/profile-sections/0" class="menu-item <%= it._base_url === '/admin/profile-sections' ? 'menu-active':''%>">Profile sections</a></li>
     <li><a href="/admin/profile" class="menu-item <%= it._base_url === '/admin/profile' ? 'menu-active':''%>">Profile</a></li>
     <li><a href="/admin/logout" class="menu-item <%= it._base_url === '/admin/logout' ? 'menu-active':''%>">Logout</a></li>
+    <li><a href="/admin/test" class="menu-item <%= it._base_url === '/admin/test' ? 'menu-active':''%>">Test</a></li>
+
   </ul>
 
   <div class="ml-3 d-none">

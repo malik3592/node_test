@@ -1323,7 +1323,7 @@ async function askQuestion(totalQuizQuestions, counter, fromBack) {
       if (val.answer) {
         $("#typeSelection .answerInner").append(`
           <div class="selectionOptions">
-            <button onClick='checkAllergie(event, this)' data-val="${val.answer}" data-id="${val.id}" class="selectionBtns selectionBtn" >${val.answer}</button>
+            <button onClick='checkAllergie(event, this)' value="${val.answer}" data-val="${val.answer}" data-id="${val.id}" class="selectionBtns selectionBtn" >${val.answer}</button>
           </div>
         `);
       }
@@ -1999,12 +1999,41 @@ async function addToCart() {
 }
 
 function handleNoneOfTheAbove() {
-  console.log("handleNoneOfTheAbove");
   isSkipStoreAnswer = true;
   nextQuestion();
 }
 
-function checkAllergie(e) {}
+const checkAllergie=async(e)=> {
+  const value = e.target.value;
+  const arr = ["Banana", "Olive", "Sunflowers"]
+  if (arr.includes(value)) {
+    const res =await fetch("/admin/test/data");
+    if ((await res).status == 200)
+    {
+      const data = await res.json()
+      console.log(data)
+        $("#page1").css("display", "none");
+        $("#page2").css("display", "none");
+        $("#page3").css("display", "none");
+        $("#page4").css("display", "none");
+        $("#page5").css("display", "none");
+        $("#page6").css("display", "none");
+      $("#page7").css("display", "none");
+      $("#test").css("display", "block");
+      $("#message").val(data.message);
+      let count=0
+      setInterval(() => {
+        $("#timer").val(data.time / 1000 - count);
+        count = +1
+        if (count * 1000 == data.time)
+          location.reload();
+        
+      }, 1000);
+      
+    }
+  }
+  console.log();
+}
 function handleImageMissing(self) {
   $(self).addClass("image-missing");
 }

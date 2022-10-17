@@ -7,6 +7,7 @@ const AdminActivesController = require("./admin/Admin_actives_controller");
 const AdminOutputVariablesController = require("./admin/Admin_output_variables_controller");
 const AdminResultProfileController = require("./admin/Admin_result_profile_controller");
 const AdminGetProfileSystem = require("./admin/getProfileSystem");
+const Test= require("./admin/Test")
 const PublicIndex = require("./public/index");
 const AdminAnswerController = require("./admin/Admin_answer_controller");
 const AdminDashboard = require("./admin/Dashboard");
@@ -31,4 +32,5 @@ module.exports = [
   MemberDashboard,
   PublicIndex,
   getProducts,
+  Test
 ];
